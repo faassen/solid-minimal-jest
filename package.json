@@ -1,0 +1,41 @@
+{
+  "name": "solid-jest-example",
+  "version": "0.0.1",
+  "description": "Minimal working example of Jest with Solid",
+  "main": "dist/bundle.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Martijn Faassen <faassen@startifact.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "@babel/preset-typescript": "^7.16.7",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@tsconfig/recommended": "^1.0.1",
+    "@types/jest": "^27.5.0",
+    "@types/node": "^17.0.21",
+    "babel-jest": "^28.1.0",
+    "babel-preset-solid": "^1.0.0",
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.4.0",
+    "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
+    "jsdom": "^19.0.0",
+    "prettier": "^2.5.1",
+    "solid-jest": "^0.2.0",
+    "solid-testing-library": "^0.3.0",
+    "ts-jest": "^28.0.2",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "solid-app-router": "^0.3.2",
+    "solid-js": "^1.3.17",
+    "typesafe-routes": "^7.0.2"
+  }
+}

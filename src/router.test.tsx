@@ -1,6 +1,19 @@
-import { Component } from "solid-js";
-import { useRoutes, Link, useParams, Router } from "solid-app-router";
-import { cleanup, fireEvent, render, screen } from "solid-testing-library";
+import { Component, createSignal } from "solid-js";
+import {
+  useRoutes,
+  Link,
+  useParams,
+  Router,
+  LocationChange,
+} from "solid-app-router";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "solid-testing-library";
+import userEvent from "@testing-library/user-event";
 
 const App: Component = () => {
   const Routes = useRoutes(routes);
@@ -57,10 +70,36 @@ const routes = [
 
 describe("Routing", () => {
   afterEach(cleanup);
-  test("it starts with zero", () => {
+  test("basic routing", async () => {
+    const user = userEvent.setup();
+    const [locationChange, setLocationChange] = createSignal<LocationChange>({
+      value: "",
+    });
     render(() => <App />);
-    const link = screen.getByText("Items Link");
+    expect(
+      screen.getByText("Items Link", { exact: false })
+    ).toBeInTheDocument();
+    const link = screen.getByRole("link");
     expect(link).toBeInTheDocument();
+    user.click(link);
+    // the event loop takes one Promise to resolve to be finished
+    await Promise.resolve();
+
+    // alternative that doesn't appear to work either:
+    // setLocationChange({ value: "/item" });
+    // await waitFor(() => locationChange().value === "/item");
+
+    // we should now on the page we routed to
+    expect(
+      screen.getByText("Item Collection Page", { exact: false })
+    ).toBeInTheDocument();
+    // const itemsLink = screen.getByRole("link");
+    // expect(itemsLink).toBeInTheDocument();
+    // user.click(itemsLink);
+    // await Promise.resolve();
+    // expect(
+    //   screen.getByText("Item Page for 3", { exact: false })
+    // ).toBeInTheDocument();
   });
 });
 

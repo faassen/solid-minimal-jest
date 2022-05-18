@@ -1,13 +1,13 @@
 import { Component } from "solid-js";
-import { useRoutes, Link, useParams } from "solid-app-router";
+import { useRoutes, Link, useParams, Router } from "solid-app-router";
 import { cleanup, fireEvent, render, screen } from "solid-testing-library";
 
 const App: Component = () => {
   const Routes = useRoutes(routes);
   return (
-    <div>
+    <Router>
       <Routes />
-    </div>
+    </Router>
   );
 };
 
